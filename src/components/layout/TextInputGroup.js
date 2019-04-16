@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 const TextInputGroup = props => {
   const { label, name, value, type, onChange, error } = props;
-  console.log(error);
+
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
