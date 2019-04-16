@@ -34,7 +34,6 @@ export default class AddContact extends Component {
       return;
     }
 
-    //const newContact = { name, email, phone, id: uuid() };
     const newContact = { name, email, phone };
 
     const res = await axios.post(
