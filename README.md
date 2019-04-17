@@ -1,4 +1,4 @@
-[Link to test the app](https://nmenescardi.github.io/Contact-Manager-Provider/#/)
+[Link to test the app](https://nmenescardi.github.io/Contact-Manager-Context/#/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

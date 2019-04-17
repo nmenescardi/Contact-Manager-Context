@@ -2,7 +2,7 @@
   "name": "contactmanager",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nmenescardi.github.io/Contact-Manager-Provider",
+  "homepage": "https://nmenescardi.github.io/Contact-Manager-Context",
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
