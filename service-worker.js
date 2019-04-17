@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Contact-Manager-Provider/precache-manifest.b3f422245f04fbbb5d26a4a173884f25.js"
+  "/Contact-Manager-Context/precache-manifest.21dc95822e4a3a34119596175c85eef7.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Contact-Manager-Provider/index.html", {
+workbox.routing.registerNavigationRoute("/Contact-Manager-Context/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

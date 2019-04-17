@@ -1,15 +1,15 @@
 {
-  "main.css": "/Contact-Manager-Provider/static/css/main.11d832ee.chunk.css",
-  "main.js": "/Contact-Manager-Provider/static/js/main.7899f6b1.chunk.js",
-  "main.js.map": "/Contact-Manager-Provider/static/js/main.7899f6b1.chunk.js.map",
-  "runtime~main.js": "/Contact-Manager-Provider/static/js/runtime~main.2775087e.js",
-  "runtime~main.js.map": "/Contact-Manager-Provider/static/js/runtime~main.2775087e.js.map",
-  "static/css/2.af10606f.chunk.css": "/Contact-Manager-Provider/static/css/2.af10606f.chunk.css",
-  "static/js/2.776a6499.chunk.js": "/Contact-Manager-Provider/static/js/2.776a6499.chunk.js",
-  "static/js/2.776a6499.chunk.js.map": "/Contact-Manager-Provider/static/js/2.776a6499.chunk.js.map",
-  "index.html": "/Contact-Manager-Provider/index.html",
-  "precache-manifest.b3f422245f04fbbb5d26a4a173884f25.js": "/Contact-Manager-Provider/precache-manifest.b3f422245f04fbbb5d26a4a173884f25.js",
-  "service-worker.js": "/Contact-Manager-Provider/service-worker.js",
-  "static/css/2.af10606f.chunk.css.map": "/Contact-Manager-Provider/static/css/2.af10606f.chunk.css.map",
-  "static/css/main.11d832ee.chunk.css.map": "/Contact-Manager-Provider/static/css/main.11d832ee.chunk.css.map"
+  "main.css": "/Contact-Manager-Context/static/css/main.11d832ee.chunk.css",
+  "main.js": "/Contact-Manager-Context/static/js/main.d1d837ba.chunk.js",
+  "main.js.map": "/Contact-Manager-Context/static/js/main.d1d837ba.chunk.js.map",
+  "runtime~main.js": "/Contact-Manager-Context/static/js/runtime~main.9480cb6a.js",
+  "runtime~main.js.map": "/Contact-Manager-Context/static/js/runtime~main.9480cb6a.js.map",
+  "static/css/2.af10606f.chunk.css": "/Contact-Manager-Context/static/css/2.af10606f.chunk.css",
+  "static/js/2.776a6499.chunk.js": "/Contact-Manager-Context/static/js/2.776a6499.chunk.js",
+  "static/js/2.776a6499.chunk.js.map": "/Contact-Manager-Context/static/js/2.776a6499.chunk.js.map",
+  "index.html": "/Contact-Manager-Context/index.html",
+  "precache-manifest.21dc95822e4a3a34119596175c85eef7.js": "/Contact-Manager-Context/precache-manifest.21dc95822e4a3a34119596175c85eef7.js",
+  "service-worker.js": "/Contact-Manager-Context/service-worker.js",
+  "static/css/2.af10606f.chunk.css.map": "/Contact-Manager-Context/static/css/2.af10606f.chunk.css.map",
+  "static/css/main.11d832ee.chunk.css.map": "/Contact-Manager-Context/static/css/main.11d832ee.chunk.css.map"
 }
