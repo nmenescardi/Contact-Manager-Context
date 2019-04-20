@@ -39,9 +39,37 @@ export class Provider extends Component {
   };
 
   async componentDidMount() {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users');
+    const res = await axios.get(
+      'http://localhost/blackbird/wp-json/wp/v2/clients_contact'
+    );
+
+    //console.log('res.data', res.data);
+    const contacts = res.data.map(contact => {
+      return {
+        name: contact.title.rendered,
+        email: contact.acf.email,
+        phone: contact.acf.phone,
+        description: contact.acf.description,
+        id: contact.id
+      };
+    });
     this.setState({
-      contacts: res.data
+      contacts: contacts
+    });
+
+    // testing token
+    const credentials = {
+      username: 'admin',
+      password: 'admin'
+    };
+
+    const resToken = await axios.post(
+      'http://localhost/blackbird/wp-json/jwt-auth/v1/token',
+      credentials
+    );
+
+    this.setState({
+      token: resToken.data.token
     });
   }
 
@@ -55,13 +83,3 @@ export class Provider extends Component {
 }
 
 export const Consumer = Context.Consumer;
-
-/*
- deleteContact = id => {
-    const { contacts } = this.state;
-
-    this.setState({
-      contacts: contacts.filter(contact => contact.id !== id)
-    });
-  };
-   */

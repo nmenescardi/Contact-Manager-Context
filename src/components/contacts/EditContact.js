@@ -8,20 +8,21 @@ export default class EditContact extends Component {
     name: '',
     email: '',
     phone: '',
+    description: '',
     errors: {}
   };
 
   async componentDidMount() {
     const { id } = this.props.match.params;
     const res = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${id}`
+      `http://localhost/blackbird/wp-json/wp/v2/clients_contact/${id}`
     );
 
-    const contact = res.data;
     this.setState({
-      name: contact.name,
-      email: contact.email,
-      phone: contact.phone
+      name: res.data.title.rendered,
+      description: res.data.acf.description,
+      email: res.data.acf.email,
+      phone: res.data.acf.phone
     });
   }
 
@@ -30,9 +31,9 @@ export default class EditContact extends Component {
       [e.target.name]: e.target.value
     });
 
-  onSubmit = async (dispatch, e) => {
+  onSubmit = async (dispatch, token, e) => {
     e.preventDefault();
-    const { name, email, phone } = this.state;
+    const { name, email, phone, description } = this.state;
 
     //Check for errors
     if (name === '') {
@@ -50,19 +51,37 @@ export default class EditContact extends Component {
 
     const { id } = this.props.match.params;
 
-    const updContact = { name, email, phone };
+    const updContact = {
+      title: name,
+      status: 'publish',
+      fields: {
+        description,
+        email,
+        phone
+      }
+    };
 
-    const res = await axios.put(
-      `https://jsonplaceholder.typicode.com/users/${id}`,
-      updContact
+    const resPost = await axios.put(
+      `http://localhost/blackbird/wp-json/wp/v2/clients_contact/${id}`,
+      updContact,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
-    dispatch({ type: 'UPDATE_CONTACT', payload: res.data });
+    const res = {
+      name: resPost.data.title.raw,
+      id: resPost.data.id,
+      description: resPost.data.acf.description,
+      email: resPost.data.acf.email,
+      phone: resPost.data.acf.phone
+    };
+
+    dispatch({ type: 'UPDATE_CONTACT', payload: res });
 
     this.setState({
       name: '',
       email: '',
       phone: '',
+      description: '',
       errors: {}
     });
 
@@ -71,18 +90,18 @@ export default class EditContact extends Component {
   };
 
   render() {
-    const { name, email, phone, errors } = this.state;
+    const { name, email, phone, description, errors } = this.state;
 
     return (
       <Consumer>
         {value => {
-          const { dispatch } = value;
+          const { dispatch, token } = value;
 
           return (
             <div className="card mb-3">
               <div className="card-header">Edit Contact</div>
               <div className="card-body">
-                <form onSubmit={this.onSubmit.bind(this, dispatch)}>
+                <form onSubmit={this.onSubmit.bind(this, dispatch, token)}>
                   <TextInputGroup
                     label="Name"
                     name="name"
@@ -90,6 +109,13 @@ export default class EditContact extends Component {
                     type="text"
                     onChange={this.onChange}
                     error={errors.name}
+                  />
+                  <TextInputGroup
+                    label="Bio"
+                    name="description"
+                    value={description}
+                    type="description"
+                    onChange={this.onChange}
                   />
                   <TextInputGroup
                     label="Email"

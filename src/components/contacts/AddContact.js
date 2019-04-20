@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Consumer } from '../../context';
 import TextInputGroup from '../layout/TextInputGroup';
+import FileUpload from '../layout/FileUpload';
 import axios from 'axios';
 
 export default class AddContact extends Component {
@@ -8,6 +9,7 @@ export default class AddContact extends Component {
     name: '',
     email: '',
     phone: '',
+    description: '',
     errors: {}
   };
 
@@ -16,9 +18,19 @@ export default class AddContact extends Component {
       [e.target.name]: e.target.value
     });
 
-  onSubmit = async (dispatch, e) => {
+  /*   onChangeImage = e => {
+    let files = e.target.files || e.dataTransfer.files;
+    console.log('files', files);
+    //console.log('e.target.files[0]', e.target.files[0]);
+    this.setState({
+      imageName: e.target.files[0].name,
+      imageFile: e.target.files[0]
+    });
+  };
+ */
+  onSubmit = async (dispatch, token, e) => {
     e.preventDefault();
-    const { name, email, phone } = this.state;
+    const { name, email, phone, description } = this.state;
 
     //Check for errors
     if (name === '') {
@@ -34,22 +46,41 @@ export default class AddContact extends Component {
       return;
     }
 
-    const newContact = { name, email, phone };
+    const newContact = {
+      title: name,
+      status: 'publish',
+      fields: {
+        description,
+        email,
+        phone
+      }
+    };
 
-    const res = await axios.post(
-      `https://jsonplaceholder.typicode.com/users`,
-      newContact
+    const resPost = await axios.post(
+      `http://localhost/blackbird/wp-json/wp/v2/clients_contact`,
+      newContact,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
+    console.log('resPost', resPost);
+
+    const res = {
+      name: resPost.data.title.raw,
+      id: resPost.data.id,
+      description: resPost.data.acf.description,
+      email: resPost.data.acf.email,
+      phone: resPost.data.acf.phone
+    };
 
     dispatch({
       type: 'ADD_CONTACT',
-      payload: res.data
+      payload: res
     });
 
     this.setState({
       name: '',
       email: '',
       phone: '',
+      description: '',
       errors: {}
     });
 
@@ -58,18 +89,18 @@ export default class AddContact extends Component {
   };
 
   render() {
-    const { name, email, phone, errors } = this.state;
+    const { name, email, phone, description, errors } = this.state;
 
     return (
       <Consumer>
         {value => {
-          const { dispatch } = value;
+          const { dispatch, token } = value;
 
           return (
             <div className="card mb-3">
               <div className="card-header">Add Contact</div>
               <div className="card-body">
-                <form onSubmit={this.onSubmit.bind(this, dispatch)}>
+                <form onSubmit={this.onSubmit.bind(this, dispatch, token)}>
                   <TextInputGroup
                     label="Name"
                     name="name"
@@ -77,6 +108,13 @@ export default class AddContact extends Component {
                     type="text"
                     onChange={this.onChange}
                     error={errors.name}
+                  />
+                  <TextInputGroup
+                    label="Bio"
+                    name="description"
+                    value={description}
+                    type="description"
+                    onChange={this.onChange}
                   />
                   <TextInputGroup
                     label="Email"
@@ -94,6 +132,7 @@ export default class AddContact extends Component {
                     onChange={this.onChange}
                     error={errors.phone}
                   />
+
                   <input
                     type="submit"
                     value="Add Contact"

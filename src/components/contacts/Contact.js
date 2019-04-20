@@ -9,20 +9,23 @@ export default class Contact extends Component {
     showContactInfo: false
   };
 
-  onDeleteClick = async (id, dispatch) => {
-    await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+  onDeleteClick = async (id, token, dispatch) => {
+    await axios.delete(
+      `http://localhost/blackbird/wp-json/wp/v2/clients_contact/${id}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
     dispatch({ type: 'DELETE_CONTACT', payload: id });
   };
 
   render() {
-    const { id, name, email, phone } = this.props;
+    const { id, name, email, phone, description } = this.props;
     const { showContactInfo } = this.state;
 
     return (
       <Consumer>
         {value => {
-          const { dispatch } = value;
+          const { dispatch, token } = value;
           return (
             <div className="card card-body mb-3">
               <h4>
@@ -39,7 +42,7 @@ export default class Contact extends Component {
                 <i
                   className="fas fa-times"
                   style={{ cursor: 'pointer', float: 'right', color: 'red' }}
-                  onClick={this.onDeleteClick.bind(this, id, dispatch)}
+                  onClick={this.onDeleteClick.bind(this, id, token, dispatch)}
                 />
                 <Link to={`/contact/edit/${id}`}>
                   <i
@@ -57,6 +60,9 @@ export default class Contact extends Component {
                 <ul className="list-group">
                   <li className="list-group-item">Email: {email}</li>
                   <li className="list-group-item">Phone: {phone}</li>
+                  <li className="list-group-item">
+                    Description: {description}
+                  </li>
                 </ul>
               )}
             </div>
