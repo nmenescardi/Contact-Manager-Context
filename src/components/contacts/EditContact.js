@@ -135,8 +135,8 @@ export default class EditContact extends Component {
                   />
                   <input
                     type="submit"
-                    value="Add Contact"
-                    className="btn btn-light btn-block"
+                    value="Save Contact"
+                    className="btn btn-primary btn-block"
                   />
                 </form>
               </div>

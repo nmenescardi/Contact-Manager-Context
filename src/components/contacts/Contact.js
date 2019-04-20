@@ -18,6 +18,12 @@ export default class Contact extends Component {
     dispatch({ type: 'DELETE_CONTACT', payload: id });
   };
 
+  showMoreInfo = () => {
+    this.setState({
+      showContactInfo: !this.state.showContactInfo
+    });
+  };
+
   render() {
     const { id, name, email, phone, description } = this.props;
     const { showContactInfo } = this.state;
@@ -29,29 +35,36 @@ export default class Contact extends Component {
           return (
             <div className="card card-body mb-3">
               <h4>
-                {name}{' '}
+                <span
+                  className="name-wrapper"
+                  onClick={this.showMoreInfo}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {name}
+                </span>{' '}
                 <i
-                  onClick={() => {
-                    this.setState({
-                      showContactInfo: !this.state.showContactInfo
-                    });
-                  }}
-                  className="fas fa-sort-down"
+                  onClick={this.showMoreInfo}
+                  className="fas fa-sort-down text-primary"
                   style={{ cursor: 'pointer' }}
                 />
                 <i
-                  className="fas fa-times"
-                  style={{ cursor: 'pointer', float: 'right', color: 'red' }}
+                  className="fas fa-times text-primary"
+                  style={{
+                    cursor: 'pointer',
+                    float: 'right',
+                    fontSize: '24px'
+                  }}
                   onClick={this.onDeleteClick.bind(this, id, token, dispatch)}
                 />
                 <Link to={`/contact/edit/${id}`}>
                   <i
-                    className="fas fa-pencil-alt"
+                    className="fas fa-pencil-alt mt-1"
                     style={{
                       cursor: 'pointer',
                       float: 'right',
-                      color: 'black',
-                      marginRight: '0.8rem'
+                      color: 'white',
+                      fontSize: '18px',
+                      marginRight: '1rem'
                     }}
                   />
                 </Link>

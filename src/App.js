@@ -8,7 +8,8 @@ import Header from './components/layout/Header';
 import About from './components/pages/About';
 import NotFound from './components/pages/NotFound';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+import './bootstrap-skin/bootstrap.min.css';
 import './App.css';
 
 class App extends Component {
