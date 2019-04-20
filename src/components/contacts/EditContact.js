@@ -15,7 +15,7 @@ export default class EditContact extends Component {
   async componentDidMount() {
     const { id } = this.props.match.params;
     const res = await axios.get(
-      `http://localhost/blackbird/wp-json/wp/v2/clients_contact/${id}`
+      `http://blackbird.estudiogenba.com/wp-json/wp/v2/clients_contact/${id}`
     );
 
     this.setState({

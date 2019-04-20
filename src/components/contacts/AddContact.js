@@ -57,7 +57,7 @@ export default class AddContact extends Component {
     };
 
     const resPost = await axios.post(
-      `http://localhost/blackbird/wp-json/wp/v2/clients_contact`,
+      `http://blackbird.estudiogenba.com/wp-json/wp/v2/clients_contact`,
       newContact,
       { headers: { Authorization: `Bearer ${token}` } }
     );

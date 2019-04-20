@@ -11,7 +11,7 @@ export default class Contact extends Component {
 
   onDeleteClick = async (id, token, dispatch) => {
     await axios.delete(
-      `http://localhost/blackbird/wp-json/wp/v2/clients_contact/${id}`,
+      `http://blackbird.estudiogenba.com/wp-json/wp/v2/clients_contact/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 

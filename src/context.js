@@ -40,7 +40,7 @@ export class Provider extends Component {
 
   async componentDidMount() {
     const res = await axios.get(
-      'http://localhost/blackbird/wp-json/wp/v2/clients_contact'
+      'http://blackbird.estudiogenba.com/wp-json/wp/v2/clients_contact'
     );
 
     //console.log('res.data', res.data);
@@ -64,7 +64,7 @@ export class Provider extends Component {
     };
 
     const resToken = await axios.post(
-      'http://localhost/blackbird/wp-json/jwt-auth/v1/token',
+      'http://blackbird.estudiogenba.com/wp-json/jwt-auth/v1/token',
       credentials
     );
 
