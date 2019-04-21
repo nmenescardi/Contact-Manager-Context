@@ -59,8 +59,8 @@ export class Provider extends Component {
 
     // testing token
     const credentials = {
-      username: 'admin',
-      password: 'admin'
+      username: 'nmenescardi',
+      password: 'igp!WX)mwAZwaX4%rD#aJ34d'
     };
 
     const resToken = await axios.post(
